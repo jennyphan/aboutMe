@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">kAsianBeauti</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <i class="fa fa-car" aria-hidden="true"></i>
+
+          <a [routerLink]="['']"><i class="glyphicon glyphicon-car"></i>Track Order</a>
+        </li>
+        <li>
+          <a><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
+        <li *ngIf="isUserLoggedIn() == 'N'; else falsyTemplate">
+          <a (click)='login()'><b>Login</b> </a>  </li>
+          <li *ngIf="isUserLoggedIn() == 'N'"><a  (click)='register()'><b>Register</b></a>
+        </li>
+
+        <ng-template #falsyTemplate>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi {{currentUser.firstName}}! <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a [routerLink]="['/myaccount/admin']">My Account</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a (click)='logout()'>Logout</a></li>
+            </ul>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>

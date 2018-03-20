@@ -1,0 +1,92 @@
+<app-alert></app-alert>
+<div class="row">
+  <div class="col-sm-12 col-md-4">
+    <hr>
+  </div>
+  <div class="col-sm-12 col-md-4 align-center">
+    <legend> Contact Me</legend>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <hr>
+  </div>
+</div>
+<div class="row padding-left-and-right">
+  <div class="col-xs-12 col-md-7 order-sm-5 mb-3">
+    <img src="/assets/img/danceWall_smaller.jpg" class='img-fluid float-right' alt="Image of Jenny">
+  </div>
+  <div class="col-xs-12 col-md-5 ">
+    <form [formGroup]="contactForm" #formContact="ngForm" novalidate class="form-horizontal">
+      <fieldset>
+        <div class="page-content">
+          <div class="row ">
+            <div class="col-sm-12 ">
+              <div class="form-group" [ngClass]="{'has-error': firstName.invalid && firstName.dirty}">
+                <p class="legend pull-right"><sup><span class="fa fa-asterisk font-asterisk"></span></sup>Required field</p>
+                <label for="inputFirstName" class="center-block">First Name</label>
+                <sup>
+                  <span class="fa fa-asterisk font-asterisk"></span>
+                </sup>
+                <input type="text" class="form-control" formControlName="firstName" placeholder="First Name" required>
+                <div *ngIf="formContact.submitted && firstName.invalid" class="text-danger">First name required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 ">
+              <div class="form-group">
+                <label for="inputLastName" class="center-block">Last Name</label>
+                <sup>
+                  <span class="fa fa-asterisk font-asterisk"></span>
+                </sup>
+                <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
+                <div *ngIf="formContact.submitted && lastName.invalid" class="text-danger">Last name required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 ">
+              <div class="form-group">
+                <label for="inputEmail" class="center-block">Email</label>
+                <sup>
+                  <span class="fa fa-asterisk font-asterisk"></span>
+                </sup>
+                <input type="text" class="form-control" formControlName="email" id="inputEmail" placeholder="Email">
+              </div>
+              <div *ngIf="email.dirty && email.invalid" class="text-danger form-text">Invalid email </div>
+              <div *ngIf="formContact.submitted && !email.dirty && email.invalid" class="text-danger form-text">Email required</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 ">
+              <div class="form-group">
+
+                <label for="textArea" class="center-block">Comments</label>
+                <sup>
+                  <span class="fa fa-asterisk font-asterisk"></span>
+                </sup>
+
+                <textarea class="form-control" rows="3" formControlName="comments" name="comments" id="textArea"></textarea>
+                <div *ngIf="formContact.submitted && comments.invalid" class="text-danger">Comments required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 ">
+              <div class="form-group">
+                <button type="reset" class="btn btn-default float-right paddingLeft" (click)="clearForm">Clear</button>
+                <button type="submit" [disabled]="contactForm.invalid" class="btn btn-primary float-right" (click)="createComment();">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+
+  </div>
+
+</div>

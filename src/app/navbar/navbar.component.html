@@ -1,48 +1,104 @@
-<nav class="navbar navbar-default navbar-static-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-        aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">kAsianBeauti</a>
-    </div>
+<header id="header" class="fixed-top">
+  <nav class="navbar navbar-expand-md navbar-light bg-faded ">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">k A s i a n B e a u t i</a>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item " data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" routerLink="/home" routerLinkActive="router-link-active">Home</a>
+        </li>
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" routerLink="/about" routerLinkActive="router-link-active">About</a>
+        </li>
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" routerLink="/dance" routerLinkActive="router-link-active">Dance</a>
+        </li>
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" routerLink="/work" routerLinkActive="router-link-active">Work</a>
+        </li>
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" routerLink="/contact" routerLinkActive="router-link-active">Contact</a>
+        </li>
+
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <i class="fa fa-car" aria-hidden="true"></i>
 
-          <a [routerLink]="['']"><i class="glyphicon glyphicon-car"></i>Track Order</a>
-        </li>
-        <li>
-          <a><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
+      <ul class="nav navbar-nav navbar-right">
+
         <li *ngIf="isUserLoggedIn() == 'N'; else falsyTemplate">
-          <a (click)='login()'><b>Login</b> </a>  </li>
-          <li *ngIf="isUserLoggedIn() == 'N'"><a  (click)='register()'><b>Register</b></a>
+          <a class="nav-link" (click)='login()'>
+            <b>Login</b>
+          </a>
         </li>
+        <li *ngIf="isUserLoggedIn() == 'N'">
+          <a class="nav-link" (click)='register()'>
+            <b>Register</b>
+          </a>
+        </li>
+
+
 
         <ng-template #falsyTemplate>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi {{currentUser.firstName}}! <span class="caret"></span></a>
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi {{currentUser.firstName}}!
+              <span class="caret"></span>
+            </a>
             <ul class="dropdown-menu">
-              <li><a [routerLink]="['/myaccount/admin']">My Account</a></li>
+              <li>
+                <a class="nav-link" [routerLink]="['/myaccount/admin']">My Account</a>
+              </li>
               <li role="separator" class="divider"></li>
-              <li><a (click)='logout()'>Logout</a></li>
+              <li>
+                <a class="nav-link" (click)='logout()'>Logout</a>
+              </li>
             </ul>
           </li>
         </ng-template>
+
+        <li *ngIf="isUserAdmin() === 'Y'" class="dropdown nav-item">
+          <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li>
+              <a class="nav-link" [routerLink]="['/contactList']">Comments List</a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <a class="nav-link" [routerLink]="['/userList']">Registered Users</a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <ul class="navbar-nav flex-row">
+        <li class="nav-item">
+          <a class="nav-link px-2" href="#">
+            <span class="fa fa-facebook"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-2" href="#">
+            <span class="fa fa-twitter"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-2" href="#">
+            <span class="fa fa-youtube"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-2" target="_blank" href="https://www.linkedin.com/in/jenny-phan-3911031/">
+            <span class="fa fa-linkedin"></span>
+          </a>
+        </li>
       </ul>
     </div>
-    <!-- /.navbar-collapse -->
+  </nav>
+  <div [ngClass]="(isHome)?'spacerBeige':'spacer'">
   </div>
-  <!-- /.container-fluid -->
-</nav>
+</header>

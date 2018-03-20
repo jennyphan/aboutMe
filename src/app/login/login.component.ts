@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
 
-import { AlertService, AuthenticationService } from '../shared/services/index';
+import { ModalAlertService, AuthenticationService } from '../shared/services/index';
 import { RegisterComponent } from '../register/register.component';
+import { DatabaseService } from '../shared/services/database.service';
+import { User } from '../shared/model/user';
 
 @Component({
-  templateUrl: 'login.component.html'
+  templateUrl: 'login.component.html',
+  providers: [DatabaseService]
 })
 
 export class LoginComponent extends DialogComponent<null, boolean> implements OnInit {
@@ -14,11 +17,13 @@ export class LoginComponent extends DialogComponent<null, boolean> implements On
   loading = false;
   returnUrl: string;
 
+  public users: User[];
   constructor(private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService,
-    dialogService: DialogService) {
+    private alertService: ModalAlertService,
+    dialogService: DialogService,
+    private database: DatabaseService) {
 
     super(dialogService);
   }
@@ -42,15 +47,30 @@ export class LoginComponent extends DialogComponent<null, boolean> implements On
    */
   login() {
     this.loading = true;
-    this.authenticationService.login(this.model.username, this.model.password)
-      .subscribe(
-      data => {
-        this.close();
-        this.router.navigate([this.returnUrl]);
-      },
-      error => {
-        this.alertService.error(error);
-        this.loading = false;
-      });
+    this.alertService.clearMessage();
+    localStorage.removeItem('currentUser');
+    this.database.getRegisteredUser('').subscribe(data => this.handleLogin(data));
+    this.loading = false;
+  }
+
+  handleLogin(data) {
+    this.users = data;
+    let userFound = false;
+    for (let i = 0; i < this.users.length; i++) {
+      const user = this.users[i];
+
+      if (user.userName === this.model.userName && this.model.password === user.password) {
+        userFound = true;
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
+    }
+
+    if (userFound) {
+      this.close();
+    } else {
+      this.alertService.error('User not found or incorrect password');
+    }
   }
 }
+
+

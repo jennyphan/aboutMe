@@ -65,7 +65,7 @@ describe('NavbarComponent', () => {
   });
 
   it('user should be logged in', function () {
-    const user: User = {'id': 1, 'firstName': 'jenny', 'username': 'test', 'password': 'test', 'lastName': 'test'};
+    const user: User = {'id': 1, 'firstName': 'jenny', 'userName': 'test', 'password': 'test', 'lastName': 'test'};
     localStorage.setItem('currentUser', JSON.stringify(user));
     expect(component.isUserLoggedIn()).toBe('Y');
   });

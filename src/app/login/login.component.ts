@@ -1,31 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
-
-import { ModalAlertService, AuthenticationService } from '../shared/services/index';
-import { RegisterComponent } from '../register/register.component';
-import { DatabaseService } from '../shared/services/database.service';
+import { ActivatedRoute } from '@angular/router';
+import { SimpleModalComponent, SimpleModalService } from "ngx-simple-modal";
+import { RegisterComponent } from '../register';
 import { User } from '../shared/model/user';
+import { DatabaseService } from '../shared/services/database.service';
+import { AuthenticationService, ModalAlertService } from '../shared/services/index';
 
+export interface ConfirmModel {
+  title: string;
+  message: string;
+}
 @Component({
   templateUrl: 'login.component.html',
   providers: [DatabaseService]
 })
 
-export class LoginComponent extends DialogComponent<null, boolean> implements OnInit {
+export class LoginComponent extends SimpleModalComponent<ConfirmModel, boolean> implements ConfirmModel, OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
+  title: string;
+  message: string;
 
   public users: User[];
   constructor(private route: ActivatedRoute,
-    private router: Router,
     private authenticationService: AuthenticationService,
     private alertService: ModalAlertService,
-    dialogService: DialogService,
-    private database: DatabaseService) {
-
-    super(dialogService);
+    private database: DatabaseService,
+    private simpleModalService: SimpleModalService) {
+    super();
   }
 
   ngOnInit() {
@@ -37,8 +40,9 @@ export class LoginComponent extends DialogComponent<null, boolean> implements On
   }
 
   register() {
+    this.result = true;
     this.close();
-    this.dialogService.addDialog(RegisterComponent, {}, { closeByClickingOutside: true });
+    this.simpleModalService.addModal(RegisterComponent, { title: '', message: '' });
   }
 
   /**

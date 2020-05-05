@@ -1,12 +1,11 @@
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { HomeComponent } from './home/index';
-import { AuthGuard } from './shared/guards/index';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
-import { DanceComponent } from './dance/dance.component';
-import { WorkComponent } from './work/work.component';
-import { ContactComponent } from './contact/contact.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
+import { ContactComponent } from './contact/contact.component';
+import { DanceComponent } from './dance/dance.component';
+import { HomeComponent } from './home/index';
 import { UserListComponent } from './user-list/user-list.component';
+import { WorkComponent } from './work/work.component';
 
 const appRoutes: Routes = [
     // { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -18,9 +17,8 @@ const appRoutes: Routes = [
     { path: 'work', component: WorkComponent },
     { path: 'contactList', component: ContactListComponent },
     { path: 'userList', component: UserListComponent },
-    { path: 'myaccount', loadChildren: './myaccount/myaccount.module#MyAccountModule' }, // for lazy loading
+    { path: 'myaccount', loadChildren: () => import('./myaccount/myaccount.module').then(m => m.MyAccountModule) }, // for lazy loading
     // otherwise redirect to home
-
     { path: '**', redirectTo: '' }
 
 ];

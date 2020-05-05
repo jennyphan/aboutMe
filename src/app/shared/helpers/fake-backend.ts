@@ -1,5 +1,5 @@
-import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod, XHRBackend, RequestOptions } from '@angular/http';
-import { MockBackend, MockConnection } from '@angular/http/testing';
+
+import { BaseRequestOptions, Http, RequestMethod, RequestOptions, Response, ResponseOptions, XHRBackend } from '@angular/http';
 
 export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOptions, realBackend: XHRBackend) {
     // array in local storage for registered users
@@ -139,9 +139,9 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                 .subscribe((response: Response) => {
                     connection.mockRespond(response);
                 },
-                (error: any) => {
-                    connection.mockError(error);
-                });
+                    (error: any) => {
+                        connection.mockError(error);
+                    });
 
         }, 500);
 

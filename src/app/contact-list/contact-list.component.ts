@@ -10,7 +10,7 @@ import { DatabaseService } from '../shared/services/database.service';
 export class ContactListComponent implements OnInit {
 
 
-  public contacts = [];
+  public contacts: any = [];
 
   constructor(private database: DatabaseService) { }
 

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {AlertService} from '../../../shared/services/index';
+import { Component, OnInit } from '@angular/core';
+import { AlertService } from '../../../shared/services/index';
 
 @Component({
-  moduleId: module.id,
+  //moduleId: module.id,
   selector: 'app-alert',
   templateUrl: 'alert.component.html',
   styleUrls: ['./alert.component.css']

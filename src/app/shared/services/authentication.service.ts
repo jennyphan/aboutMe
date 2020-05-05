@@ -1,15 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-
 import { User } from '../../shared/model/user';
 
 @Injectable()
 export class AuthenticationService {
     public users: User[];
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     logout() {
         // remove user from local storage to log user out

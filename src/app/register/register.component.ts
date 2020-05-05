@@ -1,29 +1,31 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
+import { SimpleModalComponent } from 'ngx-simple-modal';
+import { Observable } from 'rxjs';
+import { ConfirmModel } from '../login/login.component';
 import { DatabaseService } from '../shared/services/database.service';
 import { ModalAlertService, UserService } from '../shared/services/index';
 
-import { LoginComponent } from '../login/login.component';
 
 @Component({
-    moduleId: module.id,
+    //moduleId: module.id,
     templateUrl: 'register.component.html',
     styleUrls: ['./register.component.css'],
     providers: [DatabaseService]
 })
 
-export class RegisterComponent extends DialogComponent<null, boolean> {
+export class RegisterComponent extends SimpleModalComponent<ConfirmModel, boolean> implements ConfirmModel {
     model: any = {};
     loading = false;
     public SUCCESS_MSG = 'Registration Successful';
+    title: string;
+    message: string;
 
-    constructor(private database: DatabaseService, dialogService: DialogService,
+    constructor(private database: DatabaseService,
         private router: Router,
         private userService: UserService,
         private alertService: ModalAlertService) {
-        super(dialogService);
+        super();
     }
 
     handleRegistration() {
@@ -42,21 +44,20 @@ export class RegisterComponent extends DialogComponent<null, boolean> {
         const adminFlg = 'N';
         this.database.createRegisteredUser(this.model.lastName, this.model.firstName,
             this.model.email, this.model.userName, this.model.password, adminFlg).subscribe(
-            data => {
-                this.registrationSuccess();
-            },
-            error => {
-                this.alertService.error('Error registering user');
-                return Observable.throw(error);
-            });
+                data => {
+                    this.registrationSuccess();
+                },
+                error => {
+                    this.alertService.error('Error registering user');
+                    return Observable.throw(error);
+                });
     }
 
     registrationSuccess() {
         this.alertService.success('Registration successful', true);
         setTimeout(() => {
             // tslint:disable-next-line:no-unused-expression
-            this.close(),
-                this.dialogService.addDialog(LoginComponent, {}, { closeByClickingOutside: true });
+            this.close()
         }, 2000);
     }
 

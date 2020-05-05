@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DatabaseService } from '../shared/services/database.service';
 import { User } from '../shared/model/user';
+import { DatabaseService } from '../shared/services/database.service';
 
 @Component({
   selector: 'app-user-list',

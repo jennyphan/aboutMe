@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '../shared/services/authentication.service';
-import { Router, NavigationStart } from '@angular/router';
-import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
-
-import { User } from '../shared/model/user';
+import { NavigationStart, Router } from '@angular/router';
+import { SimpleModalService } from "ngx-simple-modal";
+import { filter } from 'rxjs/operators';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
-
-
+import { User } from '../shared/model/user';
+import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,15 +14,15 @@ import { RegisterComponent } from '../register/register.component';
   providers: []
 })
 export class NavbarComponent {
-  private currentUser: User;
-  private isHome = false;
+  public currentUser: User;
+  public isHome = false;
 
 
   constructor(private router: Router, private authenticationService: AuthenticationService,
-    private dialogService: DialogService) {
+    private simpleModalService: SimpleModalService) {
 
-    router.events
-      .filter(event => event instanceof NavigationStart)
+    router.events.pipe(
+      filter(event => event instanceof NavigationStart))
       .subscribe((event: NavigationStart) => {
         this.isHome = false;
         if (event.url === '/home') {
@@ -65,10 +63,10 @@ export class NavbarComponent {
   }
 
   login() {
-    this.dialogService.addDialog(LoginComponent, {}, { closeByClickingOutside: true });
+    this.simpleModalService.addModal(LoginComponent, { title: '', message: '' });
   }
 
   register() {
-    this.dialogService.addDialog(RegisterComponent, {}, { closeByClickingOutside: true });
+    this.simpleModalService.addModal(RegisterComponent, { title: '', message: '' });
   }
 }

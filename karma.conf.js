@@ -4,36 +4,34 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', '@angular/cli'],
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular/cli/plugins/karma')
+      require('@angular-devkit/build-angular/plugins/karma')
       // require('karma-typescript-preprocessor')
     ],
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     files: [
-      { pattern: './src/test.ts', watched: false }
+      
       // { pattern: './src/*.ts' }
     ],
     preprocessors: {
-      './src/*.ts': ['@angular/cli'],
+      './src/*.ts': ['@angular-devkit/build-angular'],
       //'**/*.ts': ['typescript']
     },
     mime: {
       'text/x-typescript': ['ts','tsx']
     },
     coverageIstanbulReporter: {
-      reports: [ 'html', 'lcovonly' ],
+      dir: require('path').join(__dirname, 'coverage'), reports: [ 'html', 'lcovonly' ],
       fixWebpackSourcePaths: true
     },
-    angularCli: {
-      environment: 'dev'
-    },
+    
     reporters: config.angularCli && config.angularCli.codeCoverage
               ? ['progress', 'coverage-istanbul']
               : ['progress', 'kjhtml'],

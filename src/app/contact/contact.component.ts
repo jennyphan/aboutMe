@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DatabaseService } from '../shared/services/database.service';
-import { Observable } from 'rxjs/Observable';
-import { AlertService, AuthenticationService } from '../shared/services/index';
-import { FormControl, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Contact } from '../shared/model/contact';
+import { DatabaseService } from '../shared/services/database.service';
+import { AlertService, AuthenticationService } from '../shared/services/index';
 
 
 @Component({

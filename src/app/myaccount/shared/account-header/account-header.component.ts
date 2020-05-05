@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../../shared/services/authentication.service';
 import { Router } from '@angular/router';
 import { User } from '../../../shared/model/user';
+import { AuthenticationService } from '../../../shared/services/authentication.service';
 import { SharedAccountService } from '../../shared/service/shared-account-service.component';
 
 
@@ -14,7 +14,7 @@ import { SharedAccountService } from '../../shared/service/shared-account-servic
 export class AccountHeaderComponent implements OnInit {
     private currentUser: User;
 
-    private searchCaseNumber = '';
+    public searchCaseNumber = '';
 
     constructor(private sharedAccountService: SharedAccountService, private router: Router, private authenticationService: AuthenticationService) {
         this.sharedAccountService.caseNumber$.subscribe(

@@ -32,7 +32,6 @@ export class LoginComponent extends SimpleModalComponent<ConfirmModel, boolean> 
   }
 
   ngOnInit() {
-    // reset login status
     this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'

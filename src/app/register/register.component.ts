@@ -6,9 +6,7 @@ import { ConfirmModel } from '../login/login.component';
 import { DatabaseService } from '../shared/services/database.service';
 import { ModalAlertService, UserService } from '../shared/services/index';
 
-
 @Component({
-    //moduleId: module.id,
     templateUrl: 'register.component.html',
     styleUrls: ['./register.component.css'],
     providers: [DatabaseService]

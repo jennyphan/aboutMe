@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ModalAlertService } from '../../../shared/services/index';
 
 @Component({
-  //moduleId: module.id,
   selector: 'app-modal-alert',
   templateUrl: 'modal-alert.component.html',
   styleUrls: ['./modal-alert.component.css']

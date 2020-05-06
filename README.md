@@ -42,6 +42,6 @@ fixture.detectChanges();
 The queryAll method returns an array of all DebugElements that satisfy the predicate.
 
 ## Deploy
-Run npm build
+Run ng build
 Login to firebase
 run firebase deploy

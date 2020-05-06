@@ -33,7 +33,6 @@ export class ContactComponent implements OnInit {
 
   }
 
-
   createFormControls() {
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);

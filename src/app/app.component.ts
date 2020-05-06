@@ -9,14 +9,19 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent {
   public isHome = false;
+  public isDance = false;
 
   constructor(private router: Router) {
     router.events.pipe(
       filter((event) => event instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {
       this.isHome = false;
-      if (event.url === '/home') {
+      this.isDance = false;
+      if (event.url === '/home' || event.url === '/') {
         this.isHome = true;
+      }
+      if (event.url === '/dance') {
+        this.isDance = true;
       }
     });
 

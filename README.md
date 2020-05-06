@@ -40,3 +40,8 @@ el = de.nativeElement; /// the setup assigns the DOM element from the DebugEleme
 fixture.detectChanges();
 
 The queryAll method returns an array of all DebugElements that satisfy the predicate.
+
+## Deploy
+Run npm build
+Login to firebase
+run firebase deploy

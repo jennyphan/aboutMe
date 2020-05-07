@@ -15,6 +15,7 @@ export class UserListComponent implements OnInit {
   constructor(private database: DatabaseService) { }
 
   ngOnInit() {
+
     this.database.getRegisteredUser('').subscribe(data => this.users = data);
   }
 

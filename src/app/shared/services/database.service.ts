@@ -12,7 +12,7 @@ export class DatabaseService {
     constructor(private http: HttpClient) { }
 
     createComment(lastName, firstName, email, comments): Observable<any> {
-        console.log(lastName, firstName, email, comments);
+
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         const options = { headers: headers };
         const INFO = Object.assign(lastName, firstName, email, comments);

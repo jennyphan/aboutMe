@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../shared/services/authentication.service';
 import { Router } from '@angular/router';
 import { User } from '../../shared/model/user';
+import { AuthenticationService } from '../../shared/services/authentication.service';
 import { SharedAccountService } from '../shared/service/shared-account-service.component';
 
 
@@ -16,7 +16,6 @@ export class AdminAccountComponent implements OnInit {
     private searchCaseNumber = '';
 
     constructor(private sharedAccountService: SharedAccountService, private router: Router, private authenticationService: AuthenticationService) {
-        console.log('finished constructor');
 
     }
 

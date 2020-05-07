@@ -55,7 +55,7 @@ export class ContactComponent implements OnInit {
   }
 
   createComment() {
-    console.log('in create person');
+
     if (this.contactForm.invalid) {
       return;
     }

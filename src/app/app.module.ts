@@ -28,7 +28,7 @@ import { SharedModule } from './shared/shared.module';
     HomeComponent,
     ModalAlertComponent,
     LoginComponent,
-    RegisterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
